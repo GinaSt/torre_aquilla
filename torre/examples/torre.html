@@ -123,7 +123,7 @@
 
 		hotspots = new THREE.Object3D();
 
-    var materialImg_hs = THREE.ImageUtils.loadTexture('../gennaio.png');
+    var materialImg_hs = THREE.ImageUtils.loadTexture('../gennaio_full.png');
 		var img_hs= new THREE.MeshBasicMaterial({ map: materialImg_hs, transparent:true });
 
 		// geom = new THREE.BoxGeometry( 13, 13, 13 )
@@ -152,7 +152,7 @@
     // plane2.rotation.y = (-Math.PI / 2);
 
 
-    plane_hs = new THREE.Mesh(new THREE.PlaneGeometry(2, 2),img_hs);
+    plane_hs = new THREE.Mesh(new THREE.PlaneGeometry(2, 3),img_hs);
 		plane_hs.overdraw = true;
 		plane_hs.position.x = 2.5;
 		plane_hs.position.y = 3.8;
