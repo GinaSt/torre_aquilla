@@ -3,8 +3,8 @@ var raycaster = new THREE.Raycaster();
 
 
 
-	
-function onDocumentMouseDown( event ) 
+
+function onDocumentMouseDown( event )
 {   //event.preventDefault();
 	//https://it.wikipedia.org/wiki/Torre_Aquila
 	//drawImage();
@@ -13,10 +13,10 @@ function onDocumentMouseDown( event )
 	// the following line would stop any other event handler from firing
 	// (such as the mouse's TrackballControls)
 	// event.preventDefault();
-	
+
 	console.log("Click.");
-	
-	
+
+
 	// update the mouse variable
 	var mouse = { x : 0 , y : 0 };
 	mouse.x = ( event.clientX / window.innerWidth ) * 2 - 1;
@@ -25,14 +25,14 @@ function onDocumentMouseDown( event )
 
 	// mouse.x = ( event.clientX / window.innerWidth ) * 2 - 1;
 	// mouse.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
-	
 
-	// update the picking ray with the camera and mouse position	
+
+	// update the picking ray with the camera and mouse position
 	raycaster.setFromCamera( mouse, camera );
 
 	// create an array containing all objects in the scene with which the ray intersects
 	var intersects = raycaster.intersectObjects( [plane] );
-	
+
 	// if there is one (or more) intersections
 	if ( intersects.length > 0 )
 	{
@@ -40,7 +40,7 @@ function onDocumentMouseDown( event )
 		//window.open("../../torre/examples/torre.html")
 		// change the color of the closest face.
 		//intersects[0].object.callback();
-		intersects[ 0 ].face.color.setRGB( 0.8 * Math.random() + 0.2, 0, 0 ); 
+		intersects[ 0 ].face.color.setRGB( 0.8 * Math.random() + 0.2, 0, 0 );
 		intersects[ 0 ].object.geometry.colorsNeedUpdate = true;
 		// window.alert("Questo Ã¨ un esempio di alert incluso nello script.");
 		winW = ""+(screen.width / 2) -200 ;
@@ -61,32 +61,36 @@ function onMouseMove( event ) {
 	var mouse = { x : 0 , y : 0 };
 	mouse.x = ( event.clientX / window.innerWidth ) * 2 - 1;
 	mouse.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
-	// update the picking ray with the camera and mouse position	
+	// update the picking ray with the camera and mouse position
 	raycaster.setFromCamera( mouse, camera );
 
 	// create an array containing all objects in the scene with which the ray intersects
 	var intersects = raycaster.intersectObjects( [plane] );
-	
+
 	// if there is one (or more) intersections
 	if ( intersects.length > 0 )
 	{
 		console.log("Hit this @ " + toString( intersects[0].point ) );
 		// change the color of the closest face.
-		intersects[ 0 ].object.material.color.setRGB(1,0.3,1); 
-		intersects[ 0 ].object.material.opacity=[0.3]; 
+		intersects[ 0 ].object.material.color.setRGB(1,0.3,1);
+		intersects[ 0 ].object.material.opacity=[0.3];
 		intersects[ 0 ].object.geometry.colorsNeedUpdate = true;
-		
+		plane_hs.visible=true
+		plane_hs.rotation.y = viewer.camera.rotation.y;
+		console.log(viewer.camera.rotation.y);
+
 	}
 	else {
-		plane.material.color.setRGB( 1,0,1); 
+		plane.material.color.setRGB( 1,0,1);
 		plane.geometry.colorsNeedUpdate = true;
-		plane.material.opacity=[0]; 
-		// plane2.material.color.setRGB( 1,0,1); 
+		plane.material.opacity=[0];
+		plane_hs.visible=false
+		// plane2.material.color.setRGB( 1,0,1);
 		// plane2.geometry.colorsNeedUpdate = true;
 		// plane2.material.opacity=[0];
 	}
 	//plane.lookAt(camera.position);
-	
+
 }
 
 // function drawImage(){
@@ -109,7 +113,7 @@ function onMouseMove( event ) {
 // 	// plane.rotation.z = (-Math.PI / 2);
 
 //     viewer.scenePointCloud.add(plane);
-    
+
 //     // add subtle ambient lighting
 //     // var ambientLight = new THREE.AmbientLight(0x555555);
 //     // scene.add(ambientLight);
