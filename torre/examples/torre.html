@@ -123,55 +123,72 @@
 
 		hotspots = new THREE.Object3D();
 
-    var materialImg_hs = THREE.ImageUtils.loadTexture('../gennaio_full.png');
-		var img_hs= new THREE.MeshBasicMaterial({ map: materialImg_hs, transparent:true });
+		/*January*/
+    	var materialImg_hs1 = THREE.ImageUtils.loadTexture('../img/mesi_gennaio.jpg');
+		var img_hs1= new THREE.MeshBasicMaterial({ map: materialImg_hs1, transparent:true });
 
-		// geom = new THREE.BoxGeometry( 13, 13, 13 )
-		// mat = new THREE.MeshBasicMaterial({color: 0xFF00FF, transparent: true, opacity: 0})
-		// cube = new THREE.Mesh(geom, mat );
-		plane = new THREE.Mesh(new THREE.PlaneGeometry(2.2, 3.2),new THREE.MeshBasicMaterial({color: 0xFF00FF, transparent: true, opacity: 0}));
-		plane.position.x = 3.5;
-		plane.position.y = 4.6;
-		plane.position.z = -1.6 ;
-    plane.scale.x = 1;
-    plane.scale.y = 1;
-    plane.scale.z= 1;
-    plane.rotation.x = (Math.PI / 60);
-    plane.rotation.y = (-Math.PI / 2);
-    plane.visible=false
+		plane1 = new THREE.Mesh(new THREE.PlaneGeometry(2.2, 3.2),new THREE.MeshBasicMaterial({color: 0xFF00FF, transparent: true, opacity: 0.2}));
 
+		plane1.position.x = 3.5;
+		plane1.position.y = 4.6;
+		plane1.position.z = -1.6 ;
+	    plane1.scale.x = 1;
+	    plane1.scale.y = 1;
+	    plane1.scale.z= 1;
+	    plane1.rotation.x = (Math.PI / 60);
+	    plane1.rotation.y = (-Math.PI / 2);
+	    plane1.visible=false;
 
-    // plane2 = new THREE.Mesh(new THREE.PlaneGeometry(2.2, 3.2),new THREE.MeshBasicMaterial({color: 0xff0000, transparent: false}));
-    // plane2.position.x = 3.5;
-		// plane2.position.y = 4.6;
-		// plane2.position.z = -1.6 ;
-    // plane2.scale.x = 1;
-    // plane2.scale.y = 1;
-    // plane2.scale.z= 1;
-    // plane2.rotation.x = (Math.PI / 60);
-    // plane2.rotation.y = (-Math.PI / 2);
+    	plane_hs1 = new THREE.Mesh(new THREE.PlaneGeometry(1.3, 2),img_hs1);
+		plane_hs1.overdraw = true;
+		plane_hs1.position.x = 2.5;
+		plane_hs1.position.y = 3.8;
+		plane_hs1.position.z = -1.6;
 
+		var axis = new THREE.Vector3(0,plane_hs1.position.y,0);
+		plane_hs1.scale.x = 1;
+		plane_hs1.scale.y = 1;
+		plane_hs1.scale.z = 1;
+		plane_hs1.rotateOnAxis(axis,viewer.camera.rotation.y);
+    	plane_hs1.visible=false;
 
-    plane_hs = new THREE.Mesh(new THREE.PlaneGeometry(2, 3),img_hs);
-		plane_hs.overdraw = true;
-		plane_hs.position.x = 2.5;
-		plane_hs.position.y = 3.8;
-		plane_hs.position.z = -1.6 ;
-		var axis = new THREE.Vector3(0,plane_hs.position.y,0);
-		plane_hs.scale.x = 1;
-		plane_hs.scale.y = 1;
-		plane_hs.scale.z = 1;
-		plane_hs.rotateOnAxis(axis,viewer.camera.rotation.y);
-    plane_hs.visible=false
+    	/*February*/
+
+    	var materialImg_hs2 = THREE.ImageUtils.loadTexture('../img/February.png');
+		var img_hs2= new THREE.MeshBasicMaterial({ map: materialImg_hs2, transparent:true });
+
+		plane2 = new THREE.Mesh(new THREE.PlaneGeometry(2.0, 1.8),new THREE.MeshBasicMaterial({color: 0xFF00FF, transparent: true, opacity: 0.2}));
+
+		plane2.position.x = 3.6;
+		plane2.position.y = 5.2;
+		plane2.position.z = 0.5 ;
+	    plane2.scale.x = 1;
+	    plane2.scale.y = 1;
+	    plane2.scale.z= 1;
+	    plane2.rotation.x = (Math.PI / 60);
+	    plane2.rotation.y = (-Math.PI / 2);
+	    plane2.visible=false;
+
+    	plane_hs2 = new THREE.Mesh(new THREE.PlaneGeometry(1.3, 2),img_hs2);
+		plane_hs2.overdraw = true;
+		plane_hs2.position.x = 2.5;
+		plane_hs2.position.y = 3.8;
+		plane_hs2.position.z = -0.5;
+
+		var axis = new THREE.Vector3(0,plane_hs2.position.y,0);
+		plane_hs2.scale.x = 1;
+		plane_hs2.scale.y = 1;
+		plane_hs2.scale.z = 1;
+		plane_hs2.rotateOnAxis(axis,viewer.camera.rotation.y);
+    	plane_hs2.visible=false;
 
 		viewer.scenePointCloud.add(hotspots);
-		hotspots.add(plane);
-    hotspots.add(plane_hs);
-    // hotspots.add(plane2);
+		hotspots.add(plane1);
+    	hotspots.add(plane_hs1);
 
-		//cube.visible=false
-
-		//document.addEventListener('mouseover', onMouseOver, false);
+    	hotspots.add(plane2);
+    	hotspots.add(plane_hs2);
+    	
 		document.addEventListener('mousedown', onDocumentMouseDown, false);
 		document.addEventListener('mousemove', onMouseMove, false);
 

@@ -31,7 +31,7 @@ function onDocumentMouseDown( event )
 	raycaster.setFromCamera( mouse, camera );
 
 	// create an array containing all objects in the scene with which the ray intersects
-	var intersects = raycaster.intersectObjects( [plane] );
+	var intersects = raycaster.intersectObjects( [plane1] );
 
 	// if there is one (or more) intersections
 	if ( intersects.length > 0 )
@@ -65,33 +65,60 @@ function onMouseMove( event ) {
 	raycaster.setFromCamera( mouse, camera );
 
 	// create an array containing all objects in the scene with which the ray intersects
-	var intersects = raycaster.intersectObjects( [plane] );
+	var intersects1 = raycaster.intersectObjects( [plane1] );
 
 	// if there is one (or more) intersections
-	if ( intersects.length > 0 )
+	if ( intersects1.length > 0 )
 	{
-		console.log("Hit this @ " + toString( intersects[0].point ) );
+		console.log("Hit this @ " + toString( intersects1[0].point ) );
 		// change the color of the closest face.
-		intersects[ 0 ].object.material.color.setRGB(1,0.3,1);
-		intersects[ 0 ].object.material.opacity=[0.3];
-		intersects[ 0 ].object.geometry.colorsNeedUpdate = true;
-		plane_hs.visible=true
-		plane_hs.rotation.y = viewer.camera.rotation.y;
+		intersects1[ 0 ].object.material.color.setRGB(1,0.3,1);
+		intersects1[ 0 ].object.material.opacity=[0.2];
+		intersects1[ 0 ].object.geometry.colorsNeedUpdate = true;
+		plane1.visible=true;
+		plane_hs1.visible=true;
+		plane_hs1.rotation.y = viewer.camera.rotation.y;
+		console.log(viewer.camera.rotation.y);
+
+	}
+	else  {
+		plane1.material.color.setRGB( 1,0,1);
+		plane1.geometry.colorsNeedUpdate = true;
+		plane1.material.opacity=[0];
+		plane_hs1.visible=false;
+		
+	}
+
+// 
+
+	var intersects2 = raycaster.intersectObjects( [plane2] );
+
+	// if there is one (or more) intersections
+	if ( intersects2.length > 0 )
+	{
+		console.log("Hit this @ " + toString( intersects2[0].point ) );
+		// change the color of the closest face.
+		intersects2[ 0 ].object.material.color.setRGB(1,0.3,1);
+		intersects2[ 0 ].object.material.opacity=[0.2];
+		intersects2[ 0 ].object.geometry.colorsNeedUpdate = true;
+		plane2.visible=true;
+		plane_hs2.visible=true;
+		plane_hs2.rotation.y = viewer.camera.rotation.y;
 		console.log(viewer.camera.rotation.y);
 
 	}
 	else {
-		plane.material.color.setRGB( 1,0,1);
-		plane.geometry.colorsNeedUpdate = true;
-		plane.material.opacity=[0];
-		plane_hs.visible=false
-		// plane2.material.color.setRGB( 1,0,1);
-		// plane2.geometry.colorsNeedUpdate = true;
-		// plane2.material.opacity=[0];
+		plane2.material.color.setRGB( 1,0,1);
+		plane2.geometry.colorsNeedUpdate = true;
+		plane2.material.opacity=[0];
+		plane_hs2.visible=false;
+		
 	}
-	//plane.lookAt(camera.position);
 
 }
+
+
+
 
 // function drawImage(){
 // 	var camera = viewer.camera;
