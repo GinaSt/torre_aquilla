@@ -4,10 +4,12 @@ var raycaster = new THREE.Raycaster();
 
 function onDocumentMouseDown( event )
 {   var camera = viewer.camera;
+	var offset = $('viewer').offset();
+	console.log(offset)
 	// update the mouse variable
 	var mouse = { x : 0 , y : 0 };
-	mouse.x = ( event.clientX / window.innerWidth ) * 2 - 1;
-	mouse.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
+	mouse.x = ( (event.clientX-window.offsetLeft)/ window.innerWidth ) * 2 - 1;
+	mouse.y = - ((event.clientY-window.offsetTop)/ window.innerHeight ) * 2 + 1;
 
 	// update the picking ray with the camera and mouse position
 	raycaster.setFromCamera( mouse, camera );
@@ -74,11 +76,19 @@ function onDocumentMouseDown( event )
 
 function onMouseMove( event ) {
 	var camera = viewer.camera;
+	
+	var offsets = $('#potree_render_area').offset();
+	var top = offsets.top;
+	var left = offsets.left;
+
 
 	// calculate mouse position in normalized device coordinates
 	var mouse = { x : 0 , y : 0 };
-	mouse.x = ( event.clientX / window.innerWidth ) * 2 - 1;
-	mouse.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
+	mouse.x =((event.clientX-left)/ $('#potree_render_area').width()) * 2 - 1;
+	mouse.y = - ((event.clientY-top)/ $('#potree_render_area').height() ) * 2 + 1;
+
+	// viewer.setDescription("X canvas coords: " + mouse.x + ", Y canvas coords: " + mouse.y)
+
 	// update the picking ray with the camera and mouse position
 	raycaster.setFromCamera( mouse, camera );
 
