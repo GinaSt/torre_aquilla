@@ -10,4 +10,4 @@ For the visualisation of the point cloud, Potree was used.
 
 The walls of the room are decorated with frescoes that depict the changing of seasons known as the *Cycle of the Months*.
 
-http://ginast.github.io/torre_aquilla/torre/examples/torre.html
+https://ginastavropoulou.github.io/torre_aquilla/torre/examples/torre.html
